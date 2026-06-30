@@ -1,0 +1,6 @@
+__pycache__/
+*.py[cod]
+.venv/
+generated/*.stl
+generated/*.step
+generated/*.stp
