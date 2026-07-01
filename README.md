@@ -1,43 +1,27 @@
-# Vacuum Battery Assembly CAD Review Model
+# Vacuum Battery Assembly Digital Twin
 
-This repository is currently focused on modeling **only the battery assembly**
-for review. Tray and enclosure generation are intentionally stopped until the
-battery model is approved.
+This repository now models the existing battery assembly only. It does not create an enclosure, lid, battery box, tray, or mounting brackets.
 
-## Authoritative references
+## Authoritative inputs
 
-- `6_30_2026v2.glb` is the cleaned scan used for the current assembly model.
-- The caliper photos and uploaded measurements are the scaling references for
-  this review pass.
-- The earlier `6_30_2026.glb` scan is retained but is not used for the current
-  model.
+- Supplied caliper measurements are authoritative and override the scan when they disagree.
+- `6_30_2026v2.glb` and the reference photos are spatial references only.
+- Geometry is rebuilt from measured dimensions and named parameters; the scan mesh is not converted directly into CAD geometry.
 
-## Current assembly-model assumptions
+## Outputs
 
-- The battery stands upright.
-- The scan X axis is battery width, scan Z is upright height, and scan Y is the
-  PCB-to-PCB depth.
-- The model uses `50.0 mm` per scan unit, yielding a cleaned-scan envelope of
-  approximately `114.9 mm W x 16.7 mm D x 125.9 mm H`.
-- The long PCB is the primary face and includes the DC barrel jack, main power
-  button, and board connector.
-- The short PCB is on the opposite side and includes LEDs, the original vacuum
-  mode button, and a board connector. The vacuum mode button is modeled for
-  review only and is not marked as an external-opening target.
+Generated files are written to `cad/`:
 
-## Output
+- `cad/battery_pack.step` — STEP CAD deliverable / assembly manifest of named solids.
+- `cad/battery_pack.stl` — triangulated review mesh generated from the rebuilt solids.
+- `cad/dimensions.md` — measured dimensions, inferred dimensions, and unknown dimensions requiring verification.
 
-- `output/vacuum_battery_assembly_model.stl` — battery-assembly review model
-  only.
-- `output/vacuum_battery_assembly_model.json` — scale, source-scan, and modeled
-  component manifest for review.
-- `tools/generate_battery_assembly_model.py` — dependency-free generator for the
-  assembly review STL and manifest.
+## Regeneration
 
-## Scope boundaries
+Run:
 
-This model includes the six-cell pack, battery holders/rails, both PCB boards,
-DC jack, main power button, LEDs, vacuum mode button, wiring, and connectors.
-It does **not** generate a fit-check tray, enclosure, shell, or rectangular-prism
-placeholder. A tray should only be generated after this assembly model is
-reviewed and approved.
+```bash
+python tools/build_battery_pack.py
+```
+
+The generator is intentionally parameter-driven. Unknown feature dimensions such as clip lips, ribs, USB-C connector body, push button, ribbon cable, and LED package size remain named parameters until measured.
