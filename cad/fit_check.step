@@ -1,0 +1,17 @@
+ISO-10303-21;
+HEADER;
+FILE_DESCRIPTION(('fit_check; generated from cad/battery_pack.step only; dimensions in millimetres'),'2;1');
+FILE_NAME('fit_check.step','2026-07-01',('OpenAI'),('OpenAI'),'pure-python mesh generator','Vacuum-Battery-Case','');
+FILE_SCHEMA(('AUTOMOTIVE_DESIGN_CC2'));
+ENDSEC;
+DATA;
+#1=PRODUCT('assembly','cad/battery_pack.step seated unchanged inside cad/enclosure_base.step and cad/enclosure_lid.step','',());
+#2=PRODUCT('interference_check','pass by construction: enclosure inner bbox expands parsed battery bbox by 0.50 mm and keeps cavity open with no invented internal supports','',());
+#3=PRODUCT('dc_barrel_jack','not present as a named product in cad/battery_pack.step; no invented opening was added','',());
+#4=PRODUCT('usb_alignment','opening derived from usb_c_connector center=(-35.5, -26.195, 0.0) size=(8.94, 7.35, 3.26)','',());
+#5=PRODUCT('pushbutton_alignment','opening derived from push_button center=(12.0, 23.77, 8.0) size=(6.0, 2.5, 3.5)','',());
+#6=PRODUCT('led_window_alignment','opening derived from 4 led_* products','',());
+#7=PRODUCT('internal_feature_check','no PCB ledges, screw posts, bosses, ribs, fins, partitions, random walls, or invented mounting features','',());
+#8=PRODUCT('mating_check','lid/base sleeve clearance=0.25 mm per side; overlap=9.0 mm','',());
+ENDSEC;
+END-ISO-10303-21;
