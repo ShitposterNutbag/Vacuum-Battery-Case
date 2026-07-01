@@ -44,6 +44,6 @@ The following are named CAD parameters, not confirmed measurements:
 
 ## Output scope
 
-- Created `battery_pack.step` as the tracked CAD deliverable and `battery_pack.stl` as a tracked review mesh for the existing battery assembly only.
+- Retained `battery_pack.step` as the tracked CAD deliverable for the existing battery assembly.
 - No enclosure, lid, battery box, or mounting brackets are included.
 - The scan was not converted directly into mesh geometry; the model is rebuilt from named CAD primitives driven by the measured dimensions above.
