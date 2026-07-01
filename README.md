@@ -1,37 +1,16 @@
-# Vacuum Battery Assembly Digital Twin
+# Vacuum Battery Enclosure CAD
 
-This repository models the existing battery assembly and a separate two-piece 3D-printable enclosure derived from the committed battery assembly CAD. It does not create a battery box, tray, or unrelated mounting brackets.
+This task generates only the two-piece 3D-printable enclosure around the existing committed battery assembly STEP file.
 
-## Authoritative inputs
+## Reference input
 
-- Supplied caliper measurements are authoritative and override the scan when they disagree.
-- `6_30_2026v2.glb` and the reference photos are spatial references only.
-- Geometry is rebuilt from measured dimensions and named parameters; the scan mesh is not converted directly into CAD geometry.
-
-## Outputs
-
-Generated files are written to `cad/`:
-
-- `cad/battery_pack.step` — STEP CAD deliverable / assembly manifest of named solids.
-- `cad/battery_pack.stl` — triangulated review mesh generated from the rebuilt solids.
-- `cad/dimensions.md` — measured dimensions, inferred dimensions, and unknown dimensions requiring verification.
-
-## Regeneration
-
-Run:
-
-```bash
-python tools/build_battery_pack.py
-```
-
-The generator is intentionally parameter-driven. Unknown feature dimensions such as clip lips, ribs, USB-C connector body, push button, ribbon cable, and LED package size remain named parameters until measured.
-
+- `cad/battery_pack.step` is the source of truth for the battery assembly.
+- The battery assembly geometry is not regenerated or modified by this enclosure task.
+- No `battery_pack.FCStd` file is created or tracked.
 
 ## Enclosure outputs
 
-The enclosure is generated around the committed `cad/battery_pack.step` assembly without modifying that battery geometry. The enclosure uses 2.0 mm walls, 0.3 mm minimum clearance, four M3 screw bosses, USB-C/LED/button alignment features, PCB standoffs, battery locating ribs, and ventilation features near the PCB.
-
-Generated enclosure files:
+The generated enclosure deliverables are:
 
 - `cad/enclosure_base.FCStd`
 - `cad/enclosure_lid.FCStd`
@@ -39,10 +18,26 @@ Generated enclosure files:
 - `cad/enclosure_lid.step`
 - `cad/enclosure_base.stl`
 - `cad/enclosure_lid.stl`
-- `cad/enclosure_dimensions.md`
 
-Regenerate the enclosure with:
+## Enclosure design basis
+
+The enclosure is derived from `cad/battery_pack.step` and uses:
+
+- `0.3 mm` minimum clearance around the referenced assembly extents.
+- `2.0 mm` wall thickness.
+- `6.0 mm` corner-radius features.
+- Four M3 screw boss axes for lid attachment.
+- USB-C opening alignment from the committed `usb_c_connector` primitive.
+- `5.0 mm` LED light-pipe axes from the committed LED primitive centers.
+- Printed pushbutton actuator alignment from the committed `push_button` primitive.
+- PCB support standoffs, battery locating ribs, and PCB-area ventilation features.
+
+## Regeneration
+
+If the enclosure must be regenerated, run:
 
 ```bash
 python tools/build_enclosure.py
 ```
+
+Do not run battery-pack generation as part of this enclosure-only task.
