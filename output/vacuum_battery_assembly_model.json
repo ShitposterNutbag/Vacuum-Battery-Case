@@ -1,0 +1,35 @@
+{
+  "source_scan": "6_30_2026v2.glb",
+  "scale_mm_per_scan_unit": 50.0,
+  "scan_bbox_mm": {
+    "x": 114.935,
+    "y": 16.672,
+    "z": 125.908
+  },
+  "cell_specification": {
+    "type": "18650",
+    "diameter_mm": 18.0,
+    "length_mm": 68.9,
+    "arrangement": "2 columns x 3 rows",
+    "intentional_gap_mm": 0.0,
+    "pack_width_mm": 36.0,
+    "pack_depth_mm": 68.9,
+    "pack_height_mm": 54.0
+  },
+  "pcb_offsets": {
+    "offset_from_battery_surface_mm": 2.0,
+    "long_pcb_y_center_mm": -37.25,
+    "short_pcb_y_center_mm": 37.25
+  },
+  "modeled_components": [
+    "six tangent measured 18650 cells",
+    "scan-retained battery holder end caps and rails",
+    "long PCB with DC barrel jack, power switch, connector, and wiring",
+    "short PCB with LED/button circuitry, connector, and wiring"
+  ],
+  "no_enclosure_or_tray_generated": true,
+  "outputs": [
+    "output/vacuum_battery_assembly_model.stl",
+    "output/vacuum_battery_assembly_model.step"
+  ]
+}
