@@ -1,0 +1,2 @@
+*.FCStd
+!cad/enclosure_*.FCStd
