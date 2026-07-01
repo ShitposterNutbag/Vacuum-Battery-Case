@@ -1,0 +1,19 @@
+{
+  "source_scan": "6_30_2026v2.glb",
+  "scale_mm_per_scan_unit": 50.0,
+  "scan_bbox_mm": {
+    "width_x": 114.935,
+    "depth_y": 16.672,
+    "height_z": 125.908
+  },
+  "modeled_components": [
+    "six cylindrical cells",
+    "battery holder rails",
+    "long PCB with DC jack, main power button, and connector",
+    "short PCB with LEDs, vacuum mode button, and connector",
+    "wire segments between boards and cell pack"
+  ],
+  "long_pcb_primary_face": "negative Y/front",
+  "short_pcb_secondary_face": "positive Y/back",
+  "no_tray_or_enclosure_generated": true
+}

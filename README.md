@@ -1,32 +1,43 @@
-# Vacuum Battery Open-Top Fit-Check Tray
+# Vacuum Battery Assembly CAD Review Model
 
-This repository contains the cleaned scan `6_30_2026v2.glb`, caliper reference
-photos, and a generated **open-top fit-check tray** STL for test fitting only.
-The earlier `6_30_2026.glb` scan is retained in the repository but is not used
-for the current tray.
+This repository is currently focused on modeling **only the battery assembly**
+for review. Tray and enclosure generation are intentionally stopped until the
+battery model is approved.
 
-## Current reference assumptions
+## Authoritative references
 
-- `6_30_2026v2.glb` is the authoritative cleaned scan.
-- The scan is scaled at `50.0 mm` per scan unit, matching the caliper-photo
-  scale check used for this fit-check pass.
+- `6_30_2026v2.glb` is the cleaned scan used for the current assembly model.
+- The caliper photos and uploaded measurements are the scaling references for
+  this review pass.
+- The earlier `6_30_2026.glb` scan is retained but is not used for the current
+  model.
+
+## Current assembly-model assumptions
+
 - The battery stands upright.
-- The scan X axis is treated as battery width, scan Z as upright height, and
-  scan Y as PCB-to-PCB depth.
-- The long PCB is the primary face and contains the DC barrel jack plus main
-  power button.
-- The short PCB is on the opposite side and contains LEDs plus the original
-  vacuum high/low button; the short-board button should not receive a functional
-  external opening.
+- The scan X axis is battery width, scan Z is upright height, and scan Y is the
+  PCB-to-PCB depth.
+- The model uses `50.0 mm` per scan unit, yielding a cleaned-scan envelope of
+  approximately `114.9 mm W x 16.7 mm D x 125.9 mm H`.
+- The long PCB is the primary face and includes the DC barrel jack, main power
+  button, and board connector.
+- The short PCB is on the opposite side and includes LEDs, the original vacuum
+  mode button, and a board connector. The vacuum mode button is modeled for
+  review only and is not marked as an external-opening target.
 
 ## Output
 
-- `output/vacuum_battery_fit_check_tray.stl` — open-top test-fit tray only.
-- `tools/generate_fit_check_stl.py` — dependency-free generator used to create
-  the tray STL from `6_30_2026v2.glb`.
+- `output/vacuum_battery_assembly_model.stl` — battery-assembly review model
+  only.
+- `output/vacuum_battery_assembly_model.json` — scale, source-scan, and modeled
+  component manifest for review.
+- `tools/generate_battery_assembly_model.py` — dependency-free generator for the
+  assembly review STL and manifest.
 
-The generated tray is intentionally not the final enclosure. It includes a floor,
-side retention walls, corner posts, and coarse reliefs on the long-PCB primary
-face for test fitting around the DC barrel jack and main power button area. It
-intentionally does not add a functional opening for the short-PCB vacuum mode
-button.
+## Scope boundaries
+
+This model includes the six-cell pack, battery holders/rails, both PCB boards,
+DC jack, main power button, LEDs, vacuum mode button, wiring, and connectors.
+It does **not** generate a fit-check tray, enclosure, shell, or rectangular-prism
+placeholder. A tray should only be generated after this assembly model is
+reviewed and approved.
