@@ -1,119 +1,170 @@
 #!/usr/bin/env python3
-"""Generate a printable fit-check STL enclosure from the committed GLB scan bbox.
-No third-party packages are required; CadQuery source with equivalent parameters is in cad/.
+"""Generate the open-top fit-check tray STL from the cleaned GLB scan.
+
+This intentionally creates only a simple test-fit tray, not a final enclosure.
+The battery stands upright with the scan's X axis as width, Z axis as height,
+and Y axis as PCB-to-PCB depth.  The long PCB is assigned to the front/primary
+face; only that side receives coarse fit-check reliefs for the DC barrel jack
+and main power button.  The opposite short-PCB side is left without functional
+button openings.
+
+No third-party packages are required.
 """
 from __future__ import annotations
-import json, struct, math
+
+import json
+import math
+import struct
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SCAN = ROOT / '6_30_2026.glb'
-OUT = ROOT / 'output' / 'vacuum_battery_fit_check_enclosure.stl'
+SCAN = ROOT / "6_30_2026v2.glb"
+OUT = ROOT / "output" / "vacuum_battery_fit_check_tray.stl"
+LEGACY_OUT = ROOT / "output" / "vacuum_battery_fit_check_enclosure.stl"
 
 SCALE_MM_PER_SCAN_UNIT = 50.0
 WALL = 2.4
 FLOOR = 2.8
 CLEARANCE = 1.5
-MIN_INTERNAL_HEIGHT = 32.0
-LIP_HEIGHT = 3.0
-LIP_WALL = 1.2
+MIN_INTERNAL_DEPTH = 22.0
+FRONT_WALL_HEIGHT = 18.0
+BACK_WALL_HEIGHT = 22.0
+SIDE_WALL_HEIGHT = 36.0
 CORNER_POST = 6.0
 
-# Cutout dimensions/locations are intentionally parametric and visible in cad/vacuum_battery_case.py.
-USB_C = dict(width=10.5, height=4.2, z_offset=10.0)
-CHARGE_MODULE = dict(width=28.0, height=12.0, z_offset=18.0)
-SWITCH = dict(width=14.0, height=7.0, x_offset=26.0)
-LED = dict(diameter=3.2, spacing=7.0, count=4, x_offset=-18.0)
+# Coarse long-PCB fit-check reliefs only; not final feature geometry.
+DC_JACK_RELIEF = dict(center_x=0.0, center_z=13.0, width=16.0, height=12.0)
+MAIN_POWER_RELIEF = dict(center_x=26.0, center_z=24.0, width=18.0, height=10.0)
 
 
-def scan_bbox(path: Path):
+def scan_bbox(path: Path) -> tuple[list[float], list[float]]:
     data = path.read_bytes()
-    magic, version, length = struct.unpack_from('<III', data, 0)
+    magic, version, _length = struct.unpack_from("<III", data, 0)
     if magic != 0x46546C67 or version != 2:
-        raise ValueError(f'{path} is not a GLB v2 file')
-    off = 12
-    mins, maxs = [], []
-    while off < len(data):
-        clen, ctype = struct.unpack_from('<II', data, off); off += 8
-        chunk = data[off:off+clen]; off += clen
-        if ctype == 0x4E4F534A:
-            doc = json.loads(chunk.decode('utf-8'))
-            for acc in doc.get('accessors', []):
-                if acc.get('type') == 'VEC3' and 'min' in acc and 'max' in acc:
-                    mins.append(acc['min']); maxs.append(acc['max'])
+        raise ValueError(f"{path} is not a GLB v2 file")
+    offset = 12
+    mins: list[list[float]] = []
+    maxs: list[list[float]] = []
+    while offset < len(data):
+        chunk_len, chunk_type = struct.unpack_from("<II", data, offset)
+        offset += 8
+        chunk = data[offset : offset + chunk_len]
+        offset += chunk_len
+        if chunk_type == 0x4E4F534A:
+            document = json.loads(chunk.decode("utf-8"))
+            for accessor in document.get("accessors", []):
+                if accessor.get("type") == "VEC3" and "min" in accessor and "max" in accessor:
+                    mins.append(accessor["min"])
+                    maxs.append(accessor["max"])
+    if not mins:
+        raise ValueError("No VEC3 accessor bounds found in scan")
     return [min(v[i] for v in mins) for i in range(3)], [max(v[i] for v in maxs) for i in range(3)]
 
 
-def box_triangles(cx, cy, cz, sx, sy, sz):
-    x0,x1 = cx-sx/2, cx+sx/2; y0,y1 = cy-sy/2, cy+sy/2; z0,z1 = cz-sz/2, cz+sz/2
-    v=[(x0,y0,z0),(x1,y0,z0),(x1,y1,z0),(x0,y1,z0),(x0,y0,z1),(x1,y0,z1),(x1,y1,z1),(x0,y1,z1)]
-    faces=[(0,1,2),(0,2,3),(4,6,5),(4,7,6),(0,4,5),(0,5,1),(1,5,6),(1,6,2),(2,6,7),(2,7,3),(3,7,4),(3,4,0)]
-    return [(v[a],v[b],v[c]) for a,b,c in faces]
+def box_triangles(cx: float, cy: float, cz: float, sx: float, sy: float, sz: float):
+    x0, x1 = cx - sx / 2, cx + sx / 2
+    y0, y1 = cy - sy / 2, cy + sy / 2
+    z0, z1 = cz - sz / 2, cz + sz / 2
+    v = [(x0,y0,z0),(x1,y0,z0),(x1,y1,z0),(x0,y1,z0),(x0,y0,z1),(x1,y0,z1),(x1,y1,z1),(x0,y1,z1)]
+    faces = [(0,1,2),(0,2,3),(4,6,5),(4,7,6),(0,4,5),(0,5,1),(1,5,6),(1,6,2),(2,6,7),(2,7,3),(3,7,4),(3,4,0)]
+    return [(v[a], v[b], v[c]) for a, b, c in faces]
 
 
-def add_panel_with_cutouts(tris, panel, axis, pos, length, height, thick, cutouts):
-    # axis 'z': front/back panel spans X/Y at constant Z. cutouts are (cx, cy, w, h).
-    intervals_y = [(-height/2, height/2)]
-    for _, cy, _, h in cutouts:
-        new=[]
-        for a,b in intervals_y:
-            if cy-h/2>a: new.append((a, min(b, cy-h/2)))
-            if cy+h/2<b: new.append((max(a, cy+h/2), b))
-        intervals_y=[p for p in new if p[1]-p[0]>.1]
-    for ya,yb in intervals_y:
-        xs=[-length/2]
-        for cx, cy, w, h in cutouts:
-            if not (yb <= cy-h/2 or ya >= cy+h/2): xs += [cx-w/2, cx+w/2]
-        xs += [length/2]; xs=sorted(xs)
-        for xa,xb in zip(xs,xs[1:]):
-            blocked=any(xa>=cx-w/2-.01 and xb<=cx+w/2+.01 and not (yb<=cy-h/2 or ya>=cy+h/2) for cx,cy,w,h in cutouts)
-            if not blocked and xb-xa>.1:
-                cx=(xa+xb)/2; cy=(ya+yb)/2
-                if axis=='z': tris += box_triangles(cx, cy, pos, xb-xa, yb-ya, thick)
-                else: tris += box_triangles(pos, cy, cx, thick, yb-ya, xb-xa)
+def add_front_wall_with_reliefs(tris, y_pos: float, width: float, height: float, thick: float, reliefs: list[dict[str, float]]):
+    # Wall spans X/Z at constant Y.  Reliefs are rectangles in X/Z.
+    z_intervals = [(0.0, height)]
+    for relief in reliefs:
+        rz0 = relief["center_z"] - relief["height"] / 2
+        rz1 = relief["center_z"] + relief["height"] / 2
+        split = []
+        for z0, z1 in z_intervals:
+            if rz0 > z0:
+                split.append((z0, min(z1, rz0)))
+            if rz1 < z1:
+                split.append((max(z0, rz1), z1))
+        z_intervals = [pair for pair in split if pair[1] - pair[0] > 0.1]
+    for z0, z1 in z_intervals:
+        x_edges = [-width / 2]
+        for relief in reliefs:
+            rz0 = relief["center_z"] - relief["height"] / 2
+            rz1 = relief["center_z"] + relief["height"] / 2
+            if not (z1 <= rz0 or z0 >= rz1):
+                x_edges += [relief["center_x"] - relief["width"] / 2, relief["center_x"] + relief["width"] / 2]
+        x_edges += [width / 2]
+        x_edges = sorted(x_edges)
+        for x0, x1 in zip(x_edges, x_edges[1:]):
+            blocked = any(
+                x0 >= r["center_x"] - r["width"] / 2 - 0.01
+                and x1 <= r["center_x"] + r["width"] / 2 + 0.01
+                and not (z1 <= r["center_z"] - r["height"] / 2 or z0 >= r["center_z"] + r["height"] / 2)
+                for r in reliefs
+            )
+            if not blocked and x1 - x0 > 0.1:
+                tris += box_triangles((x0 + x1) / 2, y_pos, (z0 + z1) / 2, x1 - x0, thick, z1 - z0)
 
 
-def write_stl(tris, path):
-    def normal(a,b,c):
-        ux,uy,uz=[b[i]-a[i] for i in range(3)]; vx,vy,vz=[c[i]-a[i] for i in range(3)]
-        n=(uy*vz-uz*vy, uz*vx-ux*vz, ux*vy-uy*vx); l=math.sqrt(sum(i*i for i in n)) or 1
-        return tuple(i/l for i in n)
-    with path.open('w') as f:
-        f.write('solid vacuum_battery_fit_check_enclosure\n')
-        for a,b,c in tris:
-            n=normal(a,b,c); f.write(f' facet normal {n[0]:.6g} {n[1]:.6g} {n[2]:.6g}\n  outer loop\n')
-            for p in (a,b,c): f.write(f'   vertex {p[0]:.6g} {p[1]:.6g} {p[2]:.6g}\n')
-            f.write('  endloop\n endfacet\n')
-        f.write('endsolid vacuum_battery_fit_check_enclosure\n')
+def write_stl(tris, path: Path):
+    def normal(a, b, c):
+        ux, uy, uz = [b[i] - a[i] for i in range(3)]
+        vx, vy, vz = [c[i] - a[i] for i in range(3)]
+        n = (uy * vz - uz * vy, uz * vx - ux * vz, ux * vy - uy * vx)
+        length = math.sqrt(sum(i * i for i in n)) or 1.0
+        return tuple(i / length for i in n)
+    with path.open("w") as f:
+        f.write("solid vacuum_battery_fit_check_tray\n")
+        for a, b, c in tris:
+            n = normal(a, b, c)
+            f.write(f" facet normal {n[0]:.6g} {n[1]:.6g} {n[2]:.6g}\n  outer loop\n")
+            for point in (a, b, c):
+                f.write(f"   vertex {point[0]:.6g} {point[1]:.6g} {point[2]:.6g}\n")
+            f.write("  endloop\n endfacet\n")
+        f.write("endsolid vacuum_battery_fit_check_tray\n")
 
 
 def main():
-    mn,mx=scan_bbox(SCAN)
-    scan_x=(mx[0]-mn[0])*SCALE_MM_PER_SCAN_UNIT; scan_z=(mx[2]-mn[2])*SCALE_MM_PER_SCAN_UNIT; scan_y=(mx[1]-mn[1])*SCALE_MM_PER_SCAN_UNIT
-    inner_x=scan_x+2*CLEARANCE; inner_z=scan_z+2*CLEARANCE; inner_y=max(scan_y+2*CLEARANCE, MIN_INTERNAL_HEIGHT)
-    outer_x=inner_x+2*WALL; outer_z=inner_z+2*WALL; outer_y=inner_y+FLOOR
-    tris=[]
-    tris += box_triangles(0, FLOOR/2, 0, outer_x, FLOOR, outer_z) # floor
-    # side walls, with front cutouts split around apertures
-    add_panel_with_cutouts(tris, 'front','z', -outer_z/2+WALL/2, outer_x, inner_y, WALL,
-        [(0, FLOOR+USB_C['z_offset'], USB_C['width'], USB_C['height']), (0, FLOOR+CHARGE_MODULE['z_offset'], CHARGE_MODULE['width'], CHARGE_MODULE['height'])])
-    tris += box_triangles(0, FLOOR+inner_y/2, outer_z/2-WALL/2, outer_x, inner_y, WALL)
-    add_panel_with_cutouts(tris, 'left','x', -outer_x/2+WALL/2, outer_z, inner_y, WALL, [])
-    add_panel_with_cutouts(tris, 'right','x', outer_x/2-WALL/2, outer_z, inner_y, WALL,
-        [(SWITCH['x_offset'], FLOOR+inner_y*.55, SWITCH['width'], SWITCH['height'])])
-    # raised locator lip and corner posts
-    tris += box_triangles(0, outer_y+LIP_HEIGHT/2, -inner_z/2, inner_x, LIP_HEIGHT, LIP_WALL)
-    tris += box_triangles(0, outer_y+LIP_HEIGHT/2, inner_z/2, inner_x, LIP_HEIGHT, LIP_WALL)
-    tris += box_triangles(-inner_x/2, outer_y+LIP_HEIGHT/2, 0, LIP_WALL, LIP_HEIGHT, inner_z)
-    tris += box_triangles(inner_x/2, outer_y+LIP_HEIGHT/2, 0, LIP_WALL, LIP_HEIGHT, inner_z)
-    for sx in (-1,1):
-        for sz in (-1,1): tris += box_triangles(sx*(inner_x/2-CORNER_POST/2), FLOOR+inner_y/2, sz*(inner_z/2-CORNER_POST/2), CORNER_POST, inner_y, CORNER_POST)
-    # LED drill guide bosses on top front rail (shallow marks, drill through after print)
-    for i in range(LED['count']):
-        x=LED['x_offset']+(i-(LED['count']-1)/2)*LED['spacing']
-        tris += box_triangles(x, outer_y+0.6, -outer_z/2+WALL+6, LED['diameter'], 1.2, LED['diameter'])
+    scan_min, scan_max = scan_bbox(SCAN)
+    scan_width = (scan_max[0] - scan_min[0]) * SCALE_MM_PER_SCAN_UNIT
+    scan_depth = (scan_max[1] - scan_min[1]) * SCALE_MM_PER_SCAN_UNIT
+    scan_height = (scan_max[2] - scan_min[2]) * SCALE_MM_PER_SCAN_UNIT
+
+    inner_width = scan_width + 2 * CLEARANCE
+    inner_depth = max(scan_depth + 2 * CLEARANCE, MIN_INTERNAL_DEPTH)
+    outer_width = inner_width + 2 * WALL
+    outer_depth = inner_depth + 2 * WALL
+
+    tris = []
+    tris += box_triangles(0, 0, -FLOOR / 2, outer_width, outer_depth, FLOOR)
+    add_front_wall_with_reliefs(
+        tris,
+        -outer_depth / 2 + WALL / 2,
+        outer_width,
+        FRONT_WALL_HEIGHT,
+        WALL,
+        [DC_JACK_RELIEF, MAIN_POWER_RELIEF],
+    )
+    tris += box_triangles(0, outer_depth / 2 - WALL / 2, BACK_WALL_HEIGHT / 2, outer_width, WALL, BACK_WALL_HEIGHT)
+    tris += box_triangles(-outer_width / 2 + WALL / 2, 0, SIDE_WALL_HEIGHT / 2, WALL, outer_depth, SIDE_WALL_HEIGHT)
+    tris += box_triangles(outer_width / 2 - WALL / 2, 0, SIDE_WALL_HEIGHT / 2, WALL, outer_depth, SIDE_WALL_HEIGHT)
+    for sx in (-1, 1):
+        for sy in (-1, 1):
+            tris += box_triangles(
+                sx * (inner_width / 2 - CORNER_POST / 2),
+                sy * (inner_depth / 2 - CORNER_POST / 2),
+                SIDE_WALL_HEIGHT / 2,
+                CORNER_POST,
+                CORNER_POST,
+                SIDE_WALL_HEIGHT,
+            )
+
     OUT.parent.mkdir(exist_ok=True)
     write_stl(tris, OUT)
-    print(f'wrote {OUT} ({outer_x:.1f} x {outer_z:.1f} x {outer_y+LIP_HEIGHT:.1f} mm), scan bbox mm {scan_x:.1f} x {scan_z:.1f} x {scan_y:.1f}')
+    if LEGACY_OUT.exists():
+        LEGACY_OUT.unlink()
+    print(
+        f"wrote {OUT} outer {outer_width:.1f} x {outer_depth:.1f} x {SIDE_WALL_HEIGHT:.1f} mm; "
+        f"cleaned scan bbox {scan_width:.1f} W x {scan_depth:.1f} D x {scan_height:.1f} H mm"
+    )
 
-if __name__=='__main__': main()
+
+if __name__ == "__main__":
+    main()
