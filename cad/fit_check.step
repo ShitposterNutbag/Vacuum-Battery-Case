@@ -1,0 +1,15 @@
+ISO-10303-21;
+HEADER;
+FILE_DESCRIPTION(('fit_check; sleeve enclosure metadata; dimensions in millimetres'),'2;1');
+FILE_NAME('fit_check.step','2026-07-01',('OpenAI'),('OpenAI'),'pure-python mesh generator','Vacuum-Battery-Case','');
+FILE_SCHEMA(('AUTOMOTIVE_DESIGN_CC2'));
+ENDSEC;
+DATA;
+#1=PRODUCT('battery_pack_seated','cad/battery_pack.step placed at source coordinates inside revised enclosure','',());
+#2=PRODUCT('base','cad/enclosure_base.step','',());
+#3=PRODUCT('lid','cad/enclosure_lid.step','',());
+#4=PRODUCT('pcb_height_check','main_pcb bottom_z=-20.300; ledge_top_z=-20.300','',());
+#5=PRODUCT('dc_jack_alignment','connector_center=(-35.5, -26.195, 0); side_opening_center=(-35.5, -26.195, 0)','',());
+#6=PRODUCT('clearance','inner=(-48.000,-30.370,-32.050) to (48.000,25.520,35.225)','',());
+ENDSEC;
+END-ISO-10303-21;
