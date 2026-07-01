@@ -1,18 +1,43 @@
-# Vacuum Battery Fit-Check Enclosure
+# Vacuum Battery Assembly CAD Review Model
 
-This repository contains the committed scan `6_30_2026.glb`, the committed
-reference photo archive `drive-download-20260701T020457Z-3-001.zip`, editable
-CadQuery source, and a generated printable STL fit-check enclosure.
+This repository is currently focused on modeling **only the battery assembly**
+for review. Tray and enclosure generation are intentionally stopped until the
+battery model is approved.
 
-## Outputs
+## Authoritative references
 
-- `cad/vacuum_battery_case.py` — editable CadQuery source. It reads the GLB scan
-  bounding box and exposes parameters for clearance, wall thickness, USB-C,
-  charging-module, switch, and LED features.
-- `output/vacuum_battery_fit_check_enclosure.stl` — printable fit-check STL.
-- `tools/generate_fit_check_stl.py` — dependency-free STL generator used in this
-  environment when CadQuery is unavailable.
+- `6_30_2026v2.glb` is the cleaned scan used for the current assembly model.
+- The caliper photos and uploaded measurements are the scaling references for
+  this review pass.
+- The earlier `6_30_2026.glb` scan is retained but is not used for the current
+  model.
 
-The STL is intended as a first fit-check print around the scan envelope. The LED
-features are shallow drill guides so their final diameters can be tuned after the
-first print.
+## Current assembly-model assumptions
+
+- The battery stands upright.
+- The scan X axis is battery width, scan Z is upright height, and scan Y is the
+  PCB-to-PCB depth.
+- The model uses `50.0 mm` per scan unit, yielding a cleaned-scan envelope of
+  approximately `114.9 mm W x 16.7 mm D x 125.9 mm H`.
+- The long PCB is the primary face and includes the DC barrel jack, main power
+  button, and board connector.
+- The short PCB is on the opposite side and includes LEDs, the original vacuum
+  mode button, and a board connector. The vacuum mode button is modeled for
+  review only and is not marked as an external-opening target.
+
+## Output
+
+- `output/vacuum_battery_assembly_model.stl` — battery-assembly review model
+  only.
+- `output/vacuum_battery_assembly_model.json` — scale, source-scan, and modeled
+  component manifest for review.
+- `tools/generate_battery_assembly_model.py` — dependency-free generator for the
+  assembly review STL and manifest.
+
+## Scope boundaries
+
+This model includes the six-cell pack, battery holders/rails, both PCB boards,
+DC jack, main power button, LEDs, vacuum mode button, wiring, and connectors.
+It does **not** generate a fit-check tray, enclosure, shell, or rectangular-prism
+placeholder. A tray should only be generated after this assembly model is
+reviewed and approved.
