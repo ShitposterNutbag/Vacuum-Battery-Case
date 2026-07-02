@@ -254,6 +254,8 @@ def main() -> None:
     write_binary_stl(cleaned_mesh, args.stl_output)
 
     nonmanifold_edges, boundary_edges = mesh_edge_validation(cleaned_mesh)
+    print(f"obj_output={args.obj_output}")
+    print(f"stl_output={args.stl_output}")
     print(f"source_vertices={len(source_mesh.vertices)} source_faces={len(source_mesh.faces)}")
     print(f"cleaned_vertices={len(cleaned_mesh.vertices)} cleaned_faces={len(cleaned_mesh.faces)}")
     print(f"nonmanifold_edges={nonmanifold_edges} boundary_edges={boundary_edges}")
