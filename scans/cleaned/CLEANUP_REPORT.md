@@ -18,6 +18,7 @@ The script reads `scans/6_30_2026.obj` by default. If that extracted OBJ is not 
 - `scans/cleaned/cleaned_battery.stl`
 
 The generated OBJ/STL exports are intentionally not committed so the pull request remains text/code only.
+After export, the script prints the output paths and mesh validation counts so the generated files can be checked locally without adding them to version control.
 
 ## Artifacts Removed
 
