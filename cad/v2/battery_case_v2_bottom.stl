@@ -1,0 +1,758 @@
+solid battery_case_v2_bottom
+  facet normal 0 0 0 // floor
+    outer loop
+      vertex -51.9500 -32.0300 0.0000
+      vertex 51.9500 32.0300 0.0000
+      vertex 51.9500 -32.0300 0.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // floor
+    outer loop
+      vertex -51.9500 -32.0300 0.0000
+      vertex -51.9500 32.0300 0.0000
+      vertex 51.9500 32.0300 0.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // floor
+    outer loop
+      vertex -51.9500 -32.0300 2.0000
+      vertex 51.9500 -32.0300 2.0000
+      vertex 51.9500 32.0300 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // floor
+    outer loop
+      vertex -51.9500 -32.0300 2.0000
+      vertex 51.9500 32.0300 2.0000
+      vertex -51.9500 32.0300 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // floor
+    outer loop
+      vertex -51.9500 -32.0300 0.0000
+      vertex 51.9500 -32.0300 0.0000
+      vertex 51.9500 -32.0300 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // floor
+    outer loop
+      vertex -51.9500 -32.0300 0.0000
+      vertex 51.9500 -32.0300 2.0000
+      vertex -51.9500 -32.0300 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // floor
+    outer loop
+      vertex -51.9500 32.0300 0.0000
+      vertex -51.9500 32.0300 2.0000
+      vertex 51.9500 32.0300 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // floor
+    outer loop
+      vertex -51.9500 32.0300 0.0000
+      vertex 51.9500 32.0300 2.0000
+      vertex 51.9500 32.0300 0.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // floor
+    outer loop
+      vertex -51.9500 -32.0300 0.0000
+      vertex -51.9500 -32.0300 2.0000
+      vertex -51.9500 32.0300 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // floor
+    outer loop
+      vertex -51.9500 -32.0300 0.0000
+      vertex -51.9500 32.0300 2.0000
+      vertex -51.9500 32.0300 0.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // floor
+    outer loop
+      vertex 51.9500 -32.0300 0.0000
+      vertex 51.9500 32.0300 0.0000
+      vertex 51.9500 32.0300 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // floor
+    outer loop
+      vertex 51.9500 -32.0300 0.0000
+      vertex 51.9500 32.0300 2.0000
+      vertex 51.9500 -32.0300 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // long_wall_neg_y
+    outer loop
+      vertex -51.9500 -32.0300 2.0000
+      vertex 51.9500 -29.2300 2.0000
+      vertex 51.9500 -32.0300 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // long_wall_neg_y
+    outer loop
+      vertex -51.9500 -32.0300 2.0000
+      vertex -51.9500 -29.2300 2.0000
+      vertex 51.9500 -29.2300 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // long_wall_neg_y
+    outer loop
+      vertex -51.9500 -32.0300 33.0000
+      vertex 51.9500 -32.0300 33.0000
+      vertex 51.9500 -29.2300 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // long_wall_neg_y
+    outer loop
+      vertex -51.9500 -32.0300 33.0000
+      vertex 51.9500 -29.2300 33.0000
+      vertex -51.9500 -29.2300 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // long_wall_neg_y
+    outer loop
+      vertex -51.9500 -32.0300 2.0000
+      vertex 51.9500 -32.0300 2.0000
+      vertex 51.9500 -32.0300 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // long_wall_neg_y
+    outer loop
+      vertex -51.9500 -32.0300 2.0000
+      vertex 51.9500 -32.0300 33.0000
+      vertex -51.9500 -32.0300 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // long_wall_neg_y
+    outer loop
+      vertex -51.9500 -29.2300 2.0000
+      vertex -51.9500 -29.2300 33.0000
+      vertex 51.9500 -29.2300 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // long_wall_neg_y
+    outer loop
+      vertex -51.9500 -29.2300 2.0000
+      vertex 51.9500 -29.2300 33.0000
+      vertex 51.9500 -29.2300 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // long_wall_neg_y
+    outer loop
+      vertex -51.9500 -32.0300 2.0000
+      vertex -51.9500 -32.0300 33.0000
+      vertex -51.9500 -29.2300 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // long_wall_neg_y
+    outer loop
+      vertex -51.9500 -32.0300 2.0000
+      vertex -51.9500 -29.2300 33.0000
+      vertex -51.9500 -29.2300 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // long_wall_neg_y
+    outer loop
+      vertex 51.9500 -32.0300 2.0000
+      vertex 51.9500 -29.2300 2.0000
+      vertex 51.9500 -29.2300 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // long_wall_neg_y
+    outer loop
+      vertex 51.9500 -32.0300 2.0000
+      vertex 51.9500 -29.2300 33.0000
+      vertex 51.9500 -32.0300 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // long_wall_pos_y
+    outer loop
+      vertex -51.9500 29.2300 2.0000
+      vertex 51.9500 32.0300 2.0000
+      vertex 51.9500 29.2300 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // long_wall_pos_y
+    outer loop
+      vertex -51.9500 29.2300 2.0000
+      vertex -51.9500 32.0300 2.0000
+      vertex 51.9500 32.0300 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // long_wall_pos_y
+    outer loop
+      vertex -51.9500 29.2300 33.0000
+      vertex 51.9500 29.2300 33.0000
+      vertex 51.9500 32.0300 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // long_wall_pos_y
+    outer loop
+      vertex -51.9500 29.2300 33.0000
+      vertex 51.9500 32.0300 33.0000
+      vertex -51.9500 32.0300 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // long_wall_pos_y
+    outer loop
+      vertex -51.9500 29.2300 2.0000
+      vertex 51.9500 29.2300 2.0000
+      vertex 51.9500 29.2300 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // long_wall_pos_y
+    outer loop
+      vertex -51.9500 29.2300 2.0000
+      vertex 51.9500 29.2300 33.0000
+      vertex -51.9500 29.2300 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // long_wall_pos_y
+    outer loop
+      vertex -51.9500 32.0300 2.0000
+      vertex -51.9500 32.0300 33.0000
+      vertex 51.9500 32.0300 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // long_wall_pos_y
+    outer loop
+      vertex -51.9500 32.0300 2.0000
+      vertex 51.9500 32.0300 33.0000
+      vertex 51.9500 32.0300 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // long_wall_pos_y
+    outer loop
+      vertex -51.9500 29.2300 2.0000
+      vertex -51.9500 29.2300 33.0000
+      vertex -51.9500 32.0300 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // long_wall_pos_y
+    outer loop
+      vertex -51.9500 29.2300 2.0000
+      vertex -51.9500 32.0300 33.0000
+      vertex -51.9500 32.0300 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // long_wall_pos_y
+    outer loop
+      vertex 51.9500 29.2300 2.0000
+      vertex 51.9500 32.0300 2.0000
+      vertex 51.9500 32.0300 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // long_wall_pos_y
+    outer loop
+      vertex 51.9500 29.2300 2.0000
+      vertex 51.9500 32.0300 33.0000
+      vertex 51.9500 29.2300 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_pos_x
+    outer loop
+      vertex 49.1500 -29.2300 2.0000
+      vertex 51.9500 29.2300 2.0000
+      vertex 51.9500 -29.2300 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_pos_x
+    outer loop
+      vertex 49.1500 -29.2300 2.0000
+      vertex 49.1500 29.2300 2.0000
+      vertex 51.9500 29.2300 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_pos_x
+    outer loop
+      vertex 49.1500 -29.2300 33.0000
+      vertex 51.9500 -29.2300 33.0000
+      vertex 51.9500 29.2300 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_pos_x
+    outer loop
+      vertex 49.1500 -29.2300 33.0000
+      vertex 51.9500 29.2300 33.0000
+      vertex 49.1500 29.2300 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_pos_x
+    outer loop
+      vertex 49.1500 -29.2300 2.0000
+      vertex 51.9500 -29.2300 2.0000
+      vertex 51.9500 -29.2300 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_pos_x
+    outer loop
+      vertex 49.1500 -29.2300 2.0000
+      vertex 51.9500 -29.2300 33.0000
+      vertex 49.1500 -29.2300 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_pos_x
+    outer loop
+      vertex 49.1500 29.2300 2.0000
+      vertex 49.1500 29.2300 33.0000
+      vertex 51.9500 29.2300 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_pos_x
+    outer loop
+      vertex 49.1500 29.2300 2.0000
+      vertex 51.9500 29.2300 33.0000
+      vertex 51.9500 29.2300 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_pos_x
+    outer loop
+      vertex 49.1500 -29.2300 2.0000
+      vertex 49.1500 -29.2300 33.0000
+      vertex 49.1500 29.2300 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_pos_x
+    outer loop
+      vertex 49.1500 -29.2300 2.0000
+      vertex 49.1500 29.2300 33.0000
+      vertex 49.1500 29.2300 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_pos_x
+    outer loop
+      vertex 51.9500 -29.2300 2.0000
+      vertex 51.9500 29.2300 2.0000
+      vertex 51.9500 29.2300 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_pos_x
+    outer loop
+      vertex 51.9500 -29.2300 2.0000
+      vertex 51.9500 29.2300 33.0000
+      vertex 51.9500 -29.2300 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_left_of_jack
+    outer loop
+      vertex -51.9500 -29.2300 2.0000
+      vertex -49.1500 -4.7500 2.0000
+      vertex -49.1500 -29.2300 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_left_of_jack
+    outer loop
+      vertex -51.9500 -29.2300 2.0000
+      vertex -51.9500 -4.7500 2.0000
+      vertex -49.1500 -4.7500 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_left_of_jack
+    outer loop
+      vertex -51.9500 -29.2300 33.0000
+      vertex -49.1500 -29.2300 33.0000
+      vertex -49.1500 -4.7500 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_left_of_jack
+    outer loop
+      vertex -51.9500 -29.2300 33.0000
+      vertex -49.1500 -4.7500 33.0000
+      vertex -51.9500 -4.7500 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_left_of_jack
+    outer loop
+      vertex -51.9500 -29.2300 2.0000
+      vertex -49.1500 -29.2300 2.0000
+      vertex -49.1500 -29.2300 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_left_of_jack
+    outer loop
+      vertex -51.9500 -29.2300 2.0000
+      vertex -49.1500 -29.2300 33.0000
+      vertex -51.9500 -29.2300 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_left_of_jack
+    outer loop
+      vertex -51.9500 -4.7500 2.0000
+      vertex -51.9500 -4.7500 33.0000
+      vertex -49.1500 -4.7500 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_left_of_jack
+    outer loop
+      vertex -51.9500 -4.7500 2.0000
+      vertex -49.1500 -4.7500 33.0000
+      vertex -49.1500 -4.7500 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_left_of_jack
+    outer loop
+      vertex -51.9500 -29.2300 2.0000
+      vertex -51.9500 -29.2300 33.0000
+      vertex -51.9500 -4.7500 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_left_of_jack
+    outer loop
+      vertex -51.9500 -29.2300 2.0000
+      vertex -51.9500 -4.7500 33.0000
+      vertex -51.9500 -4.7500 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_left_of_jack
+    outer loop
+      vertex -49.1500 -29.2300 2.0000
+      vertex -49.1500 -4.7500 2.0000
+      vertex -49.1500 -4.7500 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_left_of_jack
+    outer loop
+      vertex -49.1500 -29.2300 2.0000
+      vertex -49.1500 -4.7500 33.0000
+      vertex -49.1500 -29.2300 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_right_of_jack
+    outer loop
+      vertex -51.9500 4.7500 2.0000
+      vertex -49.1500 29.2300 2.0000
+      vertex -49.1500 4.7500 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_right_of_jack
+    outer loop
+      vertex -51.9500 4.7500 2.0000
+      vertex -51.9500 29.2300 2.0000
+      vertex -49.1500 29.2300 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_right_of_jack
+    outer loop
+      vertex -51.9500 4.7500 33.0000
+      vertex -49.1500 4.7500 33.0000
+      vertex -49.1500 29.2300 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_right_of_jack
+    outer loop
+      vertex -51.9500 4.7500 33.0000
+      vertex -49.1500 29.2300 33.0000
+      vertex -51.9500 29.2300 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_right_of_jack
+    outer loop
+      vertex -51.9500 4.7500 2.0000
+      vertex -49.1500 4.7500 2.0000
+      vertex -49.1500 4.7500 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_right_of_jack
+    outer loop
+      vertex -51.9500 4.7500 2.0000
+      vertex -49.1500 4.7500 33.0000
+      vertex -51.9500 4.7500 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_right_of_jack
+    outer loop
+      vertex -51.9500 29.2300 2.0000
+      vertex -51.9500 29.2300 33.0000
+      vertex -49.1500 29.2300 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_right_of_jack
+    outer loop
+      vertex -51.9500 29.2300 2.0000
+      vertex -49.1500 29.2300 33.0000
+      vertex -49.1500 29.2300 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_right_of_jack
+    outer loop
+      vertex -51.9500 4.7500 2.0000
+      vertex -51.9500 4.7500 33.0000
+      vertex -51.9500 29.2300 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_right_of_jack
+    outer loop
+      vertex -51.9500 4.7500 2.0000
+      vertex -51.9500 29.2300 33.0000
+      vertex -51.9500 29.2300 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_right_of_jack
+    outer loop
+      vertex -49.1500 4.7500 2.0000
+      vertex -49.1500 29.2300 2.0000
+      vertex -49.1500 29.2300 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_right_of_jack
+    outer loop
+      vertex -49.1500 4.7500 2.0000
+      vertex -49.1500 29.2300 33.0000
+      vertex -49.1500 4.7500 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_above_jack
+    outer loop
+      vertex -51.9500 -4.7500 9.5000
+      vertex -49.1500 4.7500 9.5000
+      vertex -49.1500 -4.7500 9.5000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_above_jack
+    outer loop
+      vertex -51.9500 -4.7500 9.5000
+      vertex -51.9500 4.7500 9.5000
+      vertex -49.1500 4.7500 9.5000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_above_jack
+    outer loop
+      vertex -51.9500 -4.7500 33.0000
+      vertex -49.1500 -4.7500 33.0000
+      vertex -49.1500 4.7500 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_above_jack
+    outer loop
+      vertex -51.9500 -4.7500 33.0000
+      vertex -49.1500 4.7500 33.0000
+      vertex -51.9500 4.7500 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_above_jack
+    outer loop
+      vertex -51.9500 -4.7500 9.5000
+      vertex -49.1500 -4.7500 9.5000
+      vertex -49.1500 -4.7500 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_above_jack
+    outer loop
+      vertex -51.9500 -4.7500 9.5000
+      vertex -49.1500 -4.7500 33.0000
+      vertex -51.9500 -4.7500 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_above_jack
+    outer loop
+      vertex -51.9500 4.7500 9.5000
+      vertex -51.9500 4.7500 33.0000
+      vertex -49.1500 4.7500 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_above_jack
+    outer loop
+      vertex -51.9500 4.7500 9.5000
+      vertex -49.1500 4.7500 33.0000
+      vertex -49.1500 4.7500 9.5000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_above_jack
+    outer loop
+      vertex -51.9500 -4.7500 9.5000
+      vertex -51.9500 -4.7500 33.0000
+      vertex -51.9500 4.7500 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_above_jack
+    outer loop
+      vertex -51.9500 -4.7500 9.5000
+      vertex -51.9500 4.7500 33.0000
+      vertex -51.9500 4.7500 9.5000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_above_jack
+    outer loop
+      vertex -49.1500 -4.7500 9.5000
+      vertex -49.1500 4.7500 9.5000
+      vertex -49.1500 4.7500 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // short_wall_neg_x_above_jack
+    outer loop
+      vertex -49.1500 -4.7500 9.5000
+      vertex -49.1500 4.7500 33.0000
+      vertex -49.1500 -4.7500 33.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // rail_-1
+    outer loop
+      vertex -49.1500 -18.7300 2.0000
+      vertex 49.1500 -15.7300 2.0000
+      vertex 49.1500 -18.7300 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // rail_-1
+    outer loop
+      vertex -49.1500 -18.7300 2.0000
+      vertex -49.1500 -15.7300 2.0000
+      vertex 49.1500 -15.7300 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // rail_-1
+    outer loop
+      vertex -49.1500 -18.7300 11.5000
+      vertex 49.1500 -18.7300 11.5000
+      vertex 49.1500 -15.7300 11.5000
+    endloop
+  endfacet
+  facet normal 0 0 0 // rail_-1
+    outer loop
+      vertex -49.1500 -18.7300 11.5000
+      vertex 49.1500 -15.7300 11.5000
+      vertex -49.1500 -15.7300 11.5000
+    endloop
+  endfacet
+  facet normal 0 0 0 // rail_-1
+    outer loop
+      vertex -49.1500 -18.7300 2.0000
+      vertex 49.1500 -18.7300 2.0000
+      vertex 49.1500 -18.7300 11.5000
+    endloop
+  endfacet
+  facet normal 0 0 0 // rail_-1
+    outer loop
+      vertex -49.1500 -18.7300 2.0000
+      vertex 49.1500 -18.7300 11.5000
+      vertex -49.1500 -18.7300 11.5000
+    endloop
+  endfacet
+  facet normal 0 0 0 // rail_-1
+    outer loop
+      vertex -49.1500 -15.7300 2.0000
+      vertex -49.1500 -15.7300 11.5000
+      vertex 49.1500 -15.7300 11.5000
+    endloop
+  endfacet
+  facet normal 0 0 0 // rail_-1
+    outer loop
+      vertex -49.1500 -15.7300 2.0000
+      vertex 49.1500 -15.7300 11.5000
+      vertex 49.1500 -15.7300 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // rail_-1
+    outer loop
+      vertex -49.1500 -18.7300 2.0000
+      vertex -49.1500 -18.7300 11.5000
+      vertex -49.1500 -15.7300 11.5000
+    endloop
+  endfacet
+  facet normal 0 0 0 // rail_-1
+    outer loop
+      vertex -49.1500 -18.7300 2.0000
+      vertex -49.1500 -15.7300 11.5000
+      vertex -49.1500 -15.7300 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // rail_-1
+    outer loop
+      vertex 49.1500 -18.7300 2.0000
+      vertex 49.1500 -15.7300 2.0000
+      vertex 49.1500 -15.7300 11.5000
+    endloop
+  endfacet
+  facet normal 0 0 0 // rail_-1
+    outer loop
+      vertex 49.1500 -18.7300 2.0000
+      vertex 49.1500 -15.7300 11.5000
+      vertex 49.1500 -18.7300 11.5000
+    endloop
+  endfacet
+  facet normal 0 0 0 // rail_1
+    outer loop
+      vertex -49.1500 15.7300 2.0000
+      vertex 49.1500 18.7300 2.0000
+      vertex 49.1500 15.7300 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // rail_1
+    outer loop
+      vertex -49.1500 15.7300 2.0000
+      vertex -49.1500 18.7300 2.0000
+      vertex 49.1500 18.7300 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // rail_1
+    outer loop
+      vertex -49.1500 15.7300 11.5000
+      vertex 49.1500 15.7300 11.5000
+      vertex 49.1500 18.7300 11.5000
+    endloop
+  endfacet
+  facet normal 0 0 0 // rail_1
+    outer loop
+      vertex -49.1500 15.7300 11.5000
+      vertex 49.1500 18.7300 11.5000
+      vertex -49.1500 18.7300 11.5000
+    endloop
+  endfacet
+  facet normal 0 0 0 // rail_1
+    outer loop
+      vertex -49.1500 15.7300 2.0000
+      vertex 49.1500 15.7300 2.0000
+      vertex 49.1500 15.7300 11.5000
+    endloop
+  endfacet
+  facet normal 0 0 0 // rail_1
+    outer loop
+      vertex -49.1500 15.7300 2.0000
+      vertex 49.1500 15.7300 11.5000
+      vertex -49.1500 15.7300 11.5000
+    endloop
+  endfacet
+  facet normal 0 0 0 // rail_1
+    outer loop
+      vertex -49.1500 18.7300 2.0000
+      vertex -49.1500 18.7300 11.5000
+      vertex 49.1500 18.7300 11.5000
+    endloop
+  endfacet
+  facet normal 0 0 0 // rail_1
+    outer loop
+      vertex -49.1500 18.7300 2.0000
+      vertex 49.1500 18.7300 11.5000
+      vertex 49.1500 18.7300 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // rail_1
+    outer loop
+      vertex -49.1500 15.7300 2.0000
+      vertex -49.1500 15.7300 11.5000
+      vertex -49.1500 18.7300 11.5000
+    endloop
+  endfacet
+  facet normal 0 0 0 // rail_1
+    outer loop
+      vertex -49.1500 15.7300 2.0000
+      vertex -49.1500 18.7300 11.5000
+      vertex -49.1500 18.7300 2.0000
+    endloop
+  endfacet
+  facet normal 0 0 0 // rail_1
+    outer loop
+      vertex 49.1500 15.7300 2.0000
+      vertex 49.1500 18.7300 2.0000
+      vertex 49.1500 18.7300 11.5000
+    endloop
+  endfacet
+  facet normal 0 0 0 // rail_1
+    outer loop
+      vertex 49.1500 15.7300 2.0000
+      vertex 49.1500 18.7300 11.5000
+      vertex 49.1500 15.7300 11.5000
+    endloop
+  endfacet
+endsolid battery_case_v2_bottom
