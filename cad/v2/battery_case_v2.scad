@@ -14,10 +14,10 @@ inner = [battery[0] + 2 * clearance, battery[1] + 2 * clearance, battery[2] + 2 
 outer = [inner[0] + 2 * wall, inner[1] + 2 * wall, inner[2] + floor];
 
 // DC jack opening requirements: 9.5 mm wide x 7.5 mm high,
-// with the bottom of the opening 2 mm above the outside bottom.
-dc_jack_opening = [wall + 0.4, 9.5, 7.5];
-dc_jack_bottom_from_outside = 2;
-dc_jack_z = dc_jack_bottom_from_outside;
+// centered along the short wall width with the bottom 2 mm above the outside bottom.
+dc_width = 9.5;
+dc_height = 7.5;
+dc_bottom = 2;
 
 // Rail requirements: exactly two rails, 9.5 mm tall, inset 12 mm from each side,
 // running the usable internal length of the case.
@@ -46,9 +46,18 @@ module hollow_shell() {
     translate([-inner[0] / 2, -inner[1] / 2, floor])
       cube([inner[0], inner[1], inner[2] + 0.2]);
 
-    // DC jack opening centered horizontally on the short -X side wall.
-    translate([-outer[0] / 2 - 0.1, -dc_jack_opening[1] / 2, dc_jack_z])
-      cube(dc_jack_opening);
+    // DC jack opening centered across the short X=0 end wall.
+    translate([-outer[0] / 2, -outer[1] / 2, 0])
+      translate([
+        -0.1,
+        outer[1] / 2 - dc_width / 2,
+        dc_bottom
+      ])
+        cube([
+          wall + 0.2,
+          dc_width,
+          dc_height
+        ], center=false);
   }
 }
 
