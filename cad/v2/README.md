@@ -5,7 +5,7 @@ This revision is an OpenSCAD source-only update for the battery case. No STL, OB
 ## Verification checklist
 
 - `battery_case_v2.scad` exists in this directory.
-- The DC jack opening is on the short side wall, specifically the `-Y` wall.
+- The DC jack opening is on the short side wall, specifically the `-X` wall.
 - The DC jack opening is 9.5 mm wide by 7.5 mm high.
 - The DC jack opening starts 2 mm above the outside bottom of the case.
 - The four V1 screw posts are removed; V2 contains no post geometry.
