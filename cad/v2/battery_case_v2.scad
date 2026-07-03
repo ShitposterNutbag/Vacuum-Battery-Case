@@ -1,6 +1,6 @@
 // Vacuum battery enclosure V2 - rail-retained tray, no posts
 // Coordinate convention: X=length, Y=width, Z=height.
-// The DC jack opening is placed on a short side wall: the -Y wall.
+// The DC jack opening is placed on a short side wall: the -X wall.
 
 part = "case";
 $fn = 48;
@@ -15,7 +15,7 @@ outer = [inner[0] + 2 * wall, inner[1] + 2 * wall, inner[2] + floor];
 
 // DC jack opening requirements: 9.5 mm wide x 7.5 mm high,
 // with the bottom of the opening 2 mm above the outside bottom.
-dc_jack_opening = [9.5, wall + 0.4, 7.5];
+dc_jack_opening = [wall + 0.4, 9.5, 7.5];
 dc_jack_bottom_from_outside = 2;
 dc_jack_z = dc_jack_bottom_from_outside;
 
@@ -46,8 +46,8 @@ module hollow_shell() {
     translate([-inner[0] / 2, -inner[1] / 2, floor])
       cube([inner[0], inner[1], inner[2] + 0.2]);
 
-    // DC jack opening centered on the short -Y side wall.
-    translate([-dc_jack_opening[0] / 2, -outer[1] / 2 - 0.1, dc_jack_z])
+    // DC jack opening centered horizontally on the short -X side wall.
+    translate([-outer[0] / 2 - 0.1, -dc_jack_opening[1] / 2, dc_jack_z])
       cube(dc_jack_opening);
   }
 }
